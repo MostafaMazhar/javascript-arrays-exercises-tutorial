@@ -7,7 +7,22 @@ let people = [
 ];
 
 let simplifier = function(person){
-	return person.name;
+	let age = calculateAge(person.birthDate); 
+	return `Hello, my name is ${person.name} and I am ${age} years old`;
 };
 
+function calculateAge(birthDate){
+	let currentDate = new Date();
+	let years = currentDate.getFullYear() - birthDate.getFullYear();
+	let month = currentDate.getMonth() - birthDate.getMonth();
+	let days = currentDate.getDay() - birthDate.getDay();
+
+	if(month < 0 || (month === 0 && days < 0)){
+       years--;
+	}
+      return years;
+}
+
 console.log(people.map(simplifier));
+
+   
